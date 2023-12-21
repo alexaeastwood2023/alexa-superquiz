@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" sizes="50X50" href="./images/elephant31.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Elephant Super Quiz</title>
+</head>
+
+<body id="homePage">
+  <!--start of header-->
+  <div class="container shadow">
+    <h1 class="h1ForHome container mt-5 text-center display-2">🐘 Elephant Quiz 🐘 </h1>
+    <hr class="border">
+    <!--end of header-->
+    <!--start of images and little intro on the super quiz-->
+    <div class="row shadow">
+      <img src="./images/elephant12.jpg" class="img-fluid col-md-6 mt-3 mb-3" alt="elephants">
+      <img src="./images/elephant21.jpg" class="img-fluid col-md-6 mt-3 mb-3" alt="elephants">
+      <h6 id="instructionsHome" class="fontColorForAllText text-center mt-3 instructions mb-5">Do you want to play a
+        Super Quiz on Elephants? You can either click the button to add your own fun fact about elephants and it will
+        appear in one of the questions in the Super Quiz! If you don't want to add one, all you got to do is click the
+        button to play! Let's test your knownledge on Elephants!!! Enjoy! </h6>
+      <hr class="border-light">
+    </div>
+  </div>
+  <!--end of images and little intro on the super quiz--->
+  <!--this div is the box that holds my questions and answers-->
+  <div id="questions">
+  </div>
+  <!--start of modal and the users inputs for the question and their answers thats going to add to the questions of the super quiz-->
+  <!-- Button trigger modal -->
+  <div class="container">
+    <!--this is the h4 to tell you to click to add your own question to the quiz-->
+    <h4 id="addYourQuestion" class="mt-4 mb-1 pTagForHome text-center">Click Here If You Want Your Fun Fact About
+      Elephants Added:
+      <!--this is the button to add your own question-->
+      <button id="addYourQuestion" type="button" class="btn btn-secondary border" data-bs-toggle="modal"
+        data-bs-target="#exampleModal"> Add Your Fun Fact Here!</button>
+    </h4>
+    <!--this is the h4 to tell you to click if u want to play the quiz-->
+    <h4 id="play" class="mt-4 pTagForHome mb-5 text-center">Click Here To Play Super Quiz:
+      <!--this is the button to play the super quiz-->
+      <button class="btn btn-secondary border" id="play" onclick="askedQuestion(event)">Play Super Quiz Now!</button>
+    </h4>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-dark">
+          <h3 class="modal-title h5ForModal offset-2" id="exampleModalLabel">Elephant Super Quiz:</h3>
+          <button type="button" class="btn-close border" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bgOfModal border-dark">
+          <!--start of my form-->
+          <form id="newQuestion" class="shadow" onsubmit="addYourQuestion(event)">
+            <!--this is where they will put their question in-->
+            <label for="yourQuestion" class="fontForModal">Question Here:</label>
+            <input id="yourQuestion" type="text" name="name" required />
+            <br>
+            <!--instructions on what possible answers there are-->
+            <p class="text-center fontForModal mt-2"><i><ins>**Possible Answers (1 right, 3 wrong)**</ins></i></p>
+            <!--start of first answer-->
+            <label for="answer" class="fontForModal mt-2 mb-2">Option 1 (0):</label>
+            <input id="answerOne" type="text" name="name" required />
+            <br>
+            <!--second answer input-->
+            <label for="answer" class="fontForModal mb-4 mt-4">Option 2 (1):</label>
+            <input id="answerTwo" type="text" name="name" required />
+            <br>
+            <!--third answer input-->
+            <label for="answer" class="fontForModal mb-4">Option 3 (2):</label>
+            <input id="answerThree" type="text" name="name" required />
+            <br>
+            <!--fourth answer input-->
+            <label for="answer" class="fontForModal mb-4">Option 4 (3):</label>
+            <input id="answerFour" type="text" name="name" required />
+            <br>
+            <!--correct answer input -->
+            <p class="fontForModal text-center"><i><ins>* Please put the correct answer as opiton 1 being 0, option 2
+                  being 1, option 3
+                  being 2, and option 4 being 3 *</ins></i></p>
+            <!-- start of the correct answer and the input -->
+            <label class="fontForModal ms-5">Correct Answer:</label>
+            <input id="correct" class="border" type="number" min="0" max="3" required />
+            <!--start of submit button-->
+            <button type="submit" class="btn btn-secondary border ms-2 mt-2 ms-2 mx-5">Submit</button>
+          </form>
+          <!--end of form-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end of modal and info-->
+  <!--this is where all my questions and answers are stored-->
+  <div id="askedQuestions"></div>
+  <!-- this is for the seeAnswers collaspe at the end the rest is done in java -->
+  <div id="seeAnswers">
+  </div>
+
+  <!-- links -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script   src="https://code.jquery.com/jquery-3.7.1.min.js"   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="   crossorigin="anonymous"></script>
+  <script src="./js/main.js"></script>
+</body>
+
+</html>
